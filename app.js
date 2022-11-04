@@ -1,13 +1,14 @@
 const express = require('express');
+var CircularBuffer = require("circular-buffer");
 const app = express();
 const port = 8080;
-var temp
+var temperatureBuffer=new CircularBuffer(720)
 
 const { spawn } = require('node:child_process');
 const ls = spawn('python', ['-u','./temperature.py']);
 
 ls.stdout.on('data', (data) => {
-  temp=data
+  temperatureBuffer.enq(data)
 });
 
 ls.stderr.on('data', (data) => {
@@ -23,6 +24,8 @@ ls.on('close', (code) => {
 
 
 app.get('/', (req, res) => res.send('Hello World!: ' + temp))
+
+app.get('/sensors/temperature', (req, res) => res.send('Hello World!: ' + temperatureBuffer.get(0)))
 
 app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`))
 
