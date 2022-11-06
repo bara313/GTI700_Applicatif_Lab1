@@ -28,13 +28,13 @@ def read():
 def loop():
 	while True:
 		start_time= time.time()
-		var readData =read()
+		readData =read()
 		if readData != None:
 			end_time=time.time()
 			elapsed_time=start_time-end_time
 
-			if(3-elapsed_time>0){time.sleep(3-elapsed_time)}
-			
+			if(3-elapsed_time>0):
+				time.sleep(3-elapsed_time)
 			print ("Current temperature : %0.3f C" % read())
 
 def destroy():
