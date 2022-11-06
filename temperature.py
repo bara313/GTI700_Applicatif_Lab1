@@ -4,8 +4,7 @@
 #		ds18b20's data pin must be connected to pin7.
 #		replace the 28-XXXXXXXXX as yours.
 #----------------------------------------------------------------
-import os
-
+import os,time
 ds18b20 = ''
 
 def setup():
@@ -28,7 +27,14 @@ def read():
 	
 def loop():
 	while True:
-		if read() != None:
+		start_time= time.time()
+		readData =read()
+		if readData != None:
+			end_time=time.time()
+			elapsed_time=start_time-end_time
+
+			if(3-elapsed_time>0):
+				time.sleep(3-elapsed_time)
 			print ("Current temperature : %0.3f C" % read())
 
 def destroy():
