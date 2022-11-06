@@ -1,0 +1,19 @@
+.data-container {
+  border: 3px solid #fff;
+  padding: 20px;
+}
+
+.temperature-container {
+  width: 25%;
+  float: left;
+  padding: 20px;
+  border: 2px solid black;
+}
+
+.humidity-container {
+  width: 25%;
+  float: left;
+  padding: 20px;
+  border: 2px solid black;
+}  
+
