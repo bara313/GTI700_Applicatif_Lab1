@@ -1,26 +1,37 @@
 const express = require('express');
-var CircularBuffer = require("circular-buffer");
+var CircularBuffer = require('circular-buffer');
 const app = express();
 const port = 8080;
+<<<<<<< HEAD
 
 var routes = require('./routes.js');
 var temp
 
 var temperatureBuffer=new CircularBuffer(720)
+=======
+var temperatureBuffer = new CircularBuffer(720)
+>>>>>>> experimental
 
 
 const { spawn } = require('node:child_process');
-const ls = spawn('python', ['-u','./temperature.py']);
+const ls = spawn('python', ['-u', './temperature.py']);
 
 ls.stdout.on('data', (data) => {
-  temperatureBuffer.enq(data)
+	console.log(`stderr: ${data}`);
+	try {
+		temperatureBuffer.enq(JSON.parse(`${data}`))
+	} catch (error) {
+		console.error("Error: Invalid data from sensor")
+	}
+	
 });
 
 ls.stderr.on('data', (data) => {
-  console.error(`stderr: ${data}`);
+	console.error(`stderr: ${data}`);
 });
 
 ls.on('close', (code) => {
+<<<<<<< HEAD
   console.log(`child process exited with code ${code}`);
 }); 
 
@@ -30,6 +41,30 @@ ls.on('close', (code) => {
 
 
 app.get('/sensors/temperature', (req, res) => res.send('Hello World!: ' + temperatureBuffer.get(0)))
+=======
+	console.log(`child process exited with code ${code}`);
+});
+
+app.get('/', (req, res) => res.send('Hello World!: ' + temperatureBuffer.get(0)))
+
+app.get('/sensors/temperature', (req, res) => res.json(temperatureBuffer.get(0)))
+
+app.get('/sensors/temperature/:nb([0-9]+)', function (req, res){
+	nb = parseInt(req.params.nb)
+  	try {
+		if(nb<1){
+			throw error
+		}
+		if(nb >temperatureBuffer.size()){
+			nb=temperatureBuffer.size()
+		}
+		res.json(temperatureBuffer.get(0,nb-1))
+  	} catch (error) {
+		res.status(400).send({message:'Yikes, something went wrong'})
+	}
+	
+	})
+>>>>>>> experimental
 
 app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`))
 
