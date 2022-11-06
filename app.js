@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const port = 8080;
+var routes = require('./routes.js');
 var temp
 
 const { spawn } = require('node:child_process');
@@ -16,14 +17,8 @@ ls.stderr.on('data', (data) => {
 
 ls.on('close', (code) => {
   console.log(`child process exited with code ${code}`);
-});
-
-
-
-
+}); 
 
 app.get('/', (req, res) => res.send('Hello World!: ' + temp))
-
-app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`))
-
+app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`));
 
