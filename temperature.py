@@ -4,7 +4,8 @@
 #		ds18b20's data pin must be connected to pin7.
 #		replace the 28-XXXXXXXXX as yours.
 #----------------------------------------------------------------
-import os,time,datetime,json
+from datetime import datetime
+import os,time,json
 ds18b20 = ''
 
 def setup():
@@ -38,9 +39,10 @@ def loop():
 				time.sleep(3-elapsed_time)
 			data = {
 				"temperature":temp,
-				"time":datetime.datetime()
+				"time":datetime.now().strftime("%d/%m/%Y %H:%M:%S")
 			}
-			print (json.dumps(data))
+			string_temp=json.dumps(data)
+			print(string_temp)
 
 def destroy():
 	pass
