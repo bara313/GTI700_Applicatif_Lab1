@@ -25,7 +25,7 @@ ls.on('close', (code) => {
 
 app.get('/', (req, res) => res.send('Hello World!: ' + temp))
 
-app.get('/sensors/temperature', (req, res) => res.send(temperatureBuffer.get(0)))
+app.get('/sensors/temperature', (req, res) => res.json(temperatureBuffer.get(0)))
 
 app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`))
 
