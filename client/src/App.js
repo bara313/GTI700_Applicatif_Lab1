@@ -18,7 +18,7 @@ function App() {
       let humidity = Math.floor(Math.random() * 40)
       setCurrentTemperature(temperature)
       setTemperaturePoints(temperaturePoints => [...temperaturePoints, temperature])
-      setCurrentHumidity(Math.floor(Math.random() * 40))
+      setCurrentHumidity(humidity)
       setHumidityPoints(humidityPoints => [...humidityPoints, humidity])
       
     }, 3000);
