@@ -12,7 +12,7 @@ def setup():
 	global ds18b20
 	for i in os.listdir('/sys/bus/w1/devices'):
 		if i != 'w1_bus_master1':
-			ds18b20 = '28-031597799eb1'
+			ds18b20 = '28-031597792a7d'
 
 def read():
 #	global ds18b20
