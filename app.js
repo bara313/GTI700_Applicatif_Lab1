@@ -1,8 +1,11 @@
 const express = require('express');
 var CircularBuffer = require('circular-buffer');
 const app = express();
+const cors = require('cors');
 const port = 8080;
 var temperatureBuffer=new CircularBuffer(720)
+
+app.use(cors());
 
 const { spawn } = require('node:child_process');
 const ls = spawn('python', ['-u', './temperature.py']);
