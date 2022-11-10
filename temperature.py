@@ -34,14 +34,15 @@ def loop():
 			end_time=time.time()
 			elapsed_time=start_time-end_time
    
-
-			if(3-elapsed_time>0):
-				time.sleep(3-elapsed_time)
 			data = {
 				"temperature":temp,
 				"time":datetime.now().strftime("%d/%m/%Y %H:%M:%S")
 			}
-			string_temp=json.dumps(data)
+			string_temp=json.dumps(data)	
+
+			if(1-elapsed_time>0):
+				time.sleep(1-elapsed_time)
+
 			print(string_temp)
 
 def destroy():
