@@ -26,6 +26,8 @@ STATE_INIT_PULL_UP = 2
 STATE_DATA_FIRST_PULL_DOWN = 3
 STATE_DATA_PULL_UP = 4
 STATE_DATA_PULL_DOWN = 5
+temperature = 0
+humidity = 0
 
 def read_dht11_dat():
 	GPIO.setup(DHTPIN, GPIO.OUT)
@@ -119,23 +121,25 @@ def read_dht11_dat():
 	return the_bytes[0], the_bytes[2]
 
 def main():
+	temperature = 0
+	humidity = 0
 	
 	while True:
 		result = read_dht11_dat()
 		start_time= time.time()
 		if result:
 			humidity, temperature = result
-			end_time=time.time()
-			elapsed_time=start_time-end_time
-			data = {
-				"humidity":str(humidity) + ".0",
-				"time":datetime.now().strftime("%d/%m/%Y %H:%M:%S")
-			}
-			string_temp=json.dumps(data)
-			if(1-elapsed_time>0):
-				time.sleep(1-elapsed_time)
-			
-			print (string_temp)
+		end_time=time.time()
+		elapsed_time=end_time-start_time
+		data = {
+			"humidity":str(humidity) + ".0",
+			"time":datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+		}
+		string_temp=json.dumps(data)
+		if(2.5-elapsed_time>0):
+			time.sleep(2.5-elapsed_time)
+		
+		print (string_temp)
 						
 		time.sleep(1)
 
