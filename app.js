@@ -8,6 +8,8 @@ var humidityBuffer = new CircularBuffer(720)
 
 app.use(cors());
 
+app.use(cors());
+
 const { spawn } = require('node:child_process');
 const temperature_process = spawn('python', ['-u', './temperature.py']);
 const humid_process = spawn('python', ['-u', './humid.py']);
