@@ -17,8 +17,8 @@
   },
   "homepage": "https://github.com/bara313/GTI700_Applicatif_Lab1#readme",
   "dependencies": {
+    "child_process": "^1.0.2",
     "circular-buffer": "^1.0.3",
-    "cors": "^2.8.5",
     "express": "^4.18.2"
   }
 }

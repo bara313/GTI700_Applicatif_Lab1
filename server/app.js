@@ -1,22 +1,13 @@
 const express = require('express');
 var CircularBuffer = require('circular-buffer');
 const app = express();
-const cors = require('cors');
 const port = 8080;
 var temperatureBuffer=new CircularBuffer(720)
 var humidityBuffer = new CircularBuffer(720)
 
-app.use(cors());
-
-app.use(cors());
-
 const { spawn } = require('node:child_process');
 const temperature_process = spawn('python', ['-u', './temperature.py']);
 const humid_process = spawn('python', ['-u', './humid.py']);
-
-
-
-
 
 humid_process.stdout.on('data', (data) => {
 	console.log(`stdout: ${data}`);
@@ -146,5 +137,3 @@ app.get('/sensors/humidity/:nb([0-9]+)/avg', function (req, res){
 
 
 app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`))
-
-
