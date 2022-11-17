@@ -17,3 +17,8 @@
   border: 2px solid black;
 }  
 
+th,td {
+  padding: 6px;
+  border: 1px solid #ccc;
+  text-align:center;
+}

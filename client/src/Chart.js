@@ -21,28 +21,8 @@ ChartJS.register(
   Legend
 );
 
-export const options = {
-    plugins: {
-        legend: {
-            position: 'top',
-        },
-        title: {
-            display: true,
-            text: 'Temperature and Humidity over time',
-        },
-    },
-    scales: {
-        y: {
-            min: 0,
-            ticks: {
-                beginAtZero: true,
-                stepSize: 2
-            }
-        }
-    }
-};
-
-export const LineChart = ({ chartData }) => {
+export default function LineChart(props) {
+  const {chartData, options} = props
   return (
     <div>
       <Line
