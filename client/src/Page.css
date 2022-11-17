@@ -4,14 +4,14 @@
 }
 
 .temperature-container {
-  width: 25%;
+  width: 45%;
   float: left;
   padding: 20px;
   border: 2px solid black;
 }
 
 .humidity-container {
-  width: 25%;
+  width: 45%;
   float: left;
   padding: 20px;
   border: 2px solid black;
@@ -19,6 +19,7 @@
 
 th,td {
   padding: 6px;
+  width: 50%;
   border: 1px solid #ccc;
   text-align:center;
 }
