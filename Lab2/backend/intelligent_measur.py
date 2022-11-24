@@ -6,7 +6,7 @@ from paho.mqtt import client as mqtt_client
 
 broker = 'broker.hivemq.com'
 port = 1883
-topic = "/gti780a2021alerts/+/alert"
+topic = "/gti780a2021alerts/equipe04/alert"
 client_id = f'python-mqtt-labGTI700_2022-{random.randint(0, 1000)}'
 
 
