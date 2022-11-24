@@ -1,25 +1,26 @@
 .data-container {
-  border: 3px solid #fff;
-  padding: 20px;
-}
-
-.temperature-container {
   width: 45%;
   float: left;
   padding: 20px;
-  border: 2px solid black;
+  border: 3px solid black;
+  padding: 20px;
 }
 
-.humidity-container {
+.alert-container {
   width: 45%;
   float: left;
   padding: 20px;
-  border: 2px solid black;
+  border: 3px solid black;
+  padding: 20px;
 }  
 
 th,td {
   padding: 6px;
-  width: 50%;
+  width: 30%;
   border: 1px solid #ccc;
+  text-align:center;
+}
+
+h2 {
   text-align:center;
 }
