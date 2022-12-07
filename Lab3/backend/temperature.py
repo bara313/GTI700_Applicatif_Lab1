@@ -27,16 +27,10 @@ def read():
 	return temperature
 	
 def loop():
-	while True:
-		temp =read()
-		if temp != None:
-   
-			data = {
-				"temperature":temp
-			}
-			string_temp=json.dumps(data)	
-			time.sleep(0.5)
-			print(string_temp)
+
+	temp =read()
+	if temp != None:
+		print(temp)
 
 def destroy():
 	pass

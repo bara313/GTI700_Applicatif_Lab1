@@ -12,8 +12,11 @@
 #!/usr/bin/env python3
 import RPi.GPIO as GPIO
 from datetime import datetime
-import os,time,json
+import os, time, json, warnings
+from threading import Thread
+from threading import Lock
 
+warnings.filterwarnings("ignore")
 
 DHTPIN = 17
 
@@ -26,7 +29,6 @@ STATE_INIT_PULL_UP = 2
 STATE_DATA_FIRST_PULL_DOWN = 3
 STATE_DATA_PULL_UP = 4
 STATE_DATA_PULL_DOWN = 5
-temperature = 0
 humidity = 0
 
 def read_dht11_dat():
@@ -120,27 +122,31 @@ def read_dht11_dat():
 
 	return the_bytes[0], the_bytes[2]
 
+def imprime():
+	global humidity
+	while True:
+		with data_lock:
+			time.sleep(3)
+			print (humidity)
+
 def main():
 	temperature = 0
-	humidity = 0
+	global humidity
 	
 	while True:
 		result = read_dht11_dat()
+		start_time= time.time()
 		if result:
-			humidity, temperature = result
-		data = {
-			"humidity":str(humidity) + ".0"
-		}
-		string_temp=json.dumps(data)
-		time.sleep(0.5)
-		
-		print (string_temp)
+			humidity, temperature = result	
+
 
 def destroy():
 	GPIO.cleanup()
 
 if __name__ == '__main__':
 	try:
-		main()
+		data_lock = Lock()
+		Thread(target = main).start()
+		Thread(target = imprime).start()
 	except KeyboardInterrupt:
-		destroy() 
+		destroy()
